@@ -1,0 +1,14 @@
+{
+    "flake8.args": [
+        "--max-line-length=100",
+        "--ignore=E203,W503",
+    ],
+    "flake8.ignorePatterns": [
+        ".venv/*"
+    ],
+    "python.REPL.enableREPLSmartSend": false,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.createEnvironment.contentButton": "show",
+    "editor.formatOnSave": true,
+    "makefile.configureOnOpen": false,
+}

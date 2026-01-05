@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: Apache-2.0
+[Unit]
+Description=Timelapse for Prusa
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/prusa-livestream # Check this
+ExecStart=/usr/bin/python3 /home/pi/prusa-livestream/prusa_timelapse.py # Check this
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

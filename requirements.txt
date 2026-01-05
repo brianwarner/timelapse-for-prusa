@@ -1,0 +1,15 @@
+# Python dependencies for Timelapse for Prusa
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+requests>=2.31.0
+python-dotenv>=1.0.0
+Pillow>=10.0.0
+
+# Note: The following system packages are required but installed via apt:
+# - rpicam-apps-lite (for rpicam-still command)
+# - ffmpeg (for video encoding)
+#
+# Install on Raspberry Pi with:
+# sudo apt update
+# sudo apt install -y rpicam-apps-lite ffmpeg python3-pip
