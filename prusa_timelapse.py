@@ -104,7 +104,7 @@ class PrusaTimelapse:
         self.prusa_connect_camera_fingerprint = os.getenv(
             "PRUSA_CONNECT_CAMERA_FINGERPRINT"
         )
-        self.prusa_connect_url = "https://webcam.connect.prusa3d.com/c/snapshot"
+        self.prusa_connect_url = "https://camera-service.prusa3d.com/v1/snapshot"
 
         # Enable Prusa Connect uploads if both token and fingerprint are provided
         self.enable_prusa_connect_upload = bool(
