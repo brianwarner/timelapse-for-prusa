@@ -711,7 +711,7 @@ capture_and_email_current_view() {
     echo ""
     
     # Capture image using prusa_lib
-    python3 << PYTHON_CAPTURE_SNAPSHOT_EOF
+    if ! python3 << PYTHON_CAPTURE_SNAPSHOT_EOF
 import sys
 import os
 import logging
@@ -737,10 +737,14 @@ height = int('${IMAGE_HEIGHT:-1080}')
 extra_params = '${RPICAM_EXTRA_PARAMS}'
 focus_distance = int('${FOCUS_DISTANCE:-22}')
 lens_position = round(100 / focus_distance, 2)
+rotation = prusa_lib.validate_rotation('${CAMERA_ROTATION:-0}'.strip())
 temp_image = '$TEMP_IMAGE'
 
 try:
     if prusa_lib.capture_image(temp_image, width, height, extra_params, lens_position):
+        if not prusa_lib.rotate_image(temp_image, rotation):
+            print('ERROR: Failed to rotate image')
+            sys.exit(1)
         print('SUCCESS')
         sys.exit(0)
     else:
@@ -750,9 +754,8 @@ except Exception as e:
     print(f'ERROR: {e}')
     sys.exit(1)
 PYTHON_CAPTURE_SNAPSHOT_EOF
-
-    if [ $? -ne 0 ]; then
-        print_error "Failed to capture image"
+    then
+        print_error "Failed to capture or rotate image"
         rm -rf "$TEMP_DIR"
         read -p "Press Enter to continue..."
         return 1
