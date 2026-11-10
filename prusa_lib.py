@@ -501,13 +501,12 @@ def upload_to_prusa_connect(image_path, token, fingerprint, rotation=0, timeout=
             image_data = rotate_image_bytes(image_data, rotation)
 
         # Upload to Prusa Connect
-        url = "https://webcam.connect.prusa3d.com/c/snapshot"
+        url = "https://camera-service.prusa3d.com/v1/snapshot"
         headers = {
-            "Accept": "text/plain",
             "Content-type": "image/jpg",
             "Fingerprint": fingerprint,
             "Token": token,
-            "Content-length": str(len(image_data)),
+            "User-Agent": "PrusaTimeLapse/1.0",
         }
 
         # Log the upload operation (INFO level for visibility)
