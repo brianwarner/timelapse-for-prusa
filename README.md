@@ -168,7 +168,7 @@ If you mount your camera somewhere else, measure the distance in centimeters fro
 
 There are many other [`rpicam` parameters](https://linuxcommandlibrary.com/man/rpicam-still) available, you may need to experiment based upon your camera and mountpoint.
 
-In `setup.sh`, choose `Capture and email current camera view` to test your settings.
+In `setup.sh`, choose `Capture and email current camera view` to test your settings. The emailed snapshot uses the configured `CAMERA_ROTATION`.
 
 ### Use an app password with Gmail
 
